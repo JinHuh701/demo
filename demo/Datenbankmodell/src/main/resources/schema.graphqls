@@ -1,0 +1,51 @@
+type User {
+    id: ID!
+    username: String!
+    email: String!
+}
+
+type Post {
+    id: ID!
+    content: String!
+    userId: Int!
+    createdAt: String!
+}
+
+type Like {
+    id: ID!
+    postId: Int!
+    userId: Int!
+}
+
+type Comment {
+    id: ID!
+    postId: Int!
+    userId: Int!
+    content: String!
+    createdAt: String!
+}
+
+type Notification {
+    id: ID!
+    userId: Int!
+    type: String!
+    content: String!
+    isRead: Boolean!
+    createdAt: String!
+}
+
+type Query {
+    getUserById(id: ID!): User
+    getPostsByUser(userId: Int!): [Post]
+    getLikesByPost(postId: Int!): [Like]
+    getCommentsByPost(postId: Int!): [Comment]
+    getNotificationsByUser(userId: Int!): [Notification]
+}
+
+type Mutation {
+    createUser(username: String!, email: String!, password: String!): User
+    createPost(userId: Int!, content: String!): Post
+    likePost(userId: Int!, postId: Int!): Like
+    commentPost(userId: Int!, postId: Int!, content: String!): Comment
+    createNotification(userId: Int!, type: String!, content: String!): Notification
+}
